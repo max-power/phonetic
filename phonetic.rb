@@ -1,0 +1,48 @@
+module Phonetic
+  module Alphabet
+    # https://de.wikipedia.org/wiki/Buchstabiertafel
+    # https://en.wikipedia.org/wiki/Spelling_alphabet
+    NATO  = {"a"=>"Alfa", "b"=>"Bravo", "c"=>"Charlie", "d"=>"Delta", "e"=>"Echo", "f"=>"Foxtrot", "g"=>"Golf", "h"=>"Hotel", "i"=>"India", "j"=>"Juliett", "k"=>"Kilo", "l"=>"Lima", "m"=>"Mike", "n"=>"November", "o"=>"Oscar", "p"=>"Papa", "q"=>"Quebec", "r"=>"Romeo", "s"=>"Sierra", "t"=>"Tango", "u"=>"Uniform", "v"=>"Victor", "w"=>"Whiskey", "x"=>"X-Ray", "y"=>"Yankee", "z"=>"Zulu"}
+    USFIN = {"a"=>"Adam", "b"=>"Bob", "c"=>"Carol", "d"=>"David", "e"=>"Eddie", "f"=>"Frank", "g"=>"George", "h"=>"Harry", "i"=>"Ike", "j"=>"Jim", "k"=>"Kenny", "l"=>"Larry", "m"=>"Mary", "n"=>"Nancy", "o"=>"Oliver", "p"=>"Peter", "q"=>"Quincy", "r"=>"Roger", "s"=>"Sam", "t"=>"Thomas", "u"=>"Uncle", "v"=>"Vincent", "w"=>"William", "x"=>"Xavier", "y"=>"Yogi", "z"=>"Zachary"}
+    LAPD  = {"a"=>"Adam", "b"=>"Boy", "c"=>"Charles", "d"=>"David", "e"=>"Edward", "f"=>"Frank", "g"=>"George", "h"=>"Henry", "i"=>"Ida", "j"=>"John", "k"=>"King", "l"=>"Lincoln", "m"=>"Mary", "n"=>"Nora", "o"=>"Ocean", "p"=>"Paul", "q"=>"Queen", "r"=>"Robert", "s"=>"Sam", "t"=>"Tom", "u"=>"Union", "v"=>"Victor", "w"=>"William", "x"=>"X-ray", "y"=>"Young", "z"=>"Zebra"}
+    CS    = {"a"=>"Adam", "b"=>"Božena", "c"=>"Cyril", "d"=>"David", "e"=>"Emil", "f"=>"František", "g"=>"Gustav", "h"=>"Helena", "i"=>"Ivan", "j"=>"Josef", "k"=>"Karel", "l"=>"Ludvik", "m"=>"Marie", "n"=>"Norbert", "o"=>"Otakar", "p"=>"Petr", "q"=>"Quido", "r"=>"Rudolf", "s"=>"Svatopluk", "t"=>"Tomáš", "u"=>"Urban", "v"=>"Václav", "w"=>"Dvojité V", "x"=>"Xaver", "y"=>"Ypsilon", "z"=>"Zuzana"}
+    DE    = {"a"=>"Anton", "b"=>"Berta", "c"=>"Cäsar", "d"=>"Dora", "e"=>"Emil", "f"=>"Friedrich", "g"=>"Gustav", "h"=>"Heinrich", "i"=>"Ida", "j"=>"Julius", "k"=>"Kaufmann", "l"=>"Ludwig", "m"=>"Martha", "n"=>"Nordpol", "o"=>"Otto", "p"=>"Paula", "q"=>"Quelle", "r"=>"Richard", "s"=>"Samuel",    "t"=>"Theodor", "u"=>"Ulrich", "v"=>"Viktor", "w"=>"Wilhelm", "x"=>"Xanthippe", "y"=>"Ypsilon", "z"=>"Zacharias", "ä"=>"Ärger", "ö"=>"Ökonom", "ü"=>"Übermut", "ß"=>"Eszett"}
+    DE_AT = {"a"=>"Anton", "b"=>"Berta", "c"=>"Cäsar", "d"=>"Dora", "e"=>"Emil", "f"=>"Friedrich", "g"=>"Gustav", "h"=>"Heinrich", "i"=>"Ida", "j"=>"Julius", "k"=>"Konrad",   "l"=>"Ludwig", "m"=>"Martha", "n"=>"Nordpol", "o"=>"Otto", "p"=>"Paula", "q"=>"Quelle", "r"=>"Richard", "s"=>"Siegfried", "t"=>"Theodor", "u"=>"Ulrich", "v"=>"Viktor", "w"=>"Wilhelm", "x"=>"Xaver",     "y"=>"Ypsilon", "z"=>"Zürich",    "ä"=>"Ärger", "ö"=>"Österreich", "ü"=>"Übel", "ß"=>"Eszett" }
+    DE_CH = {"a"=>"Anton", "b"=>"Berta", "c"=>"Cäsar", "d"=>"Daniel", "e"=>"Emil", "f"=>"Friedrich", "g"=>"Gustav", "h"=>"Heinrich", "i"=>"Ida", "j"=>"Jakob", "k"=>"Kaiser",   "l"=>"Leopold", "m"=>"Marie", "n"=>"Niklaus", "o"=>"Otto", "p"=>"Peter", "q"=>"Quasi", "r"=>"Rosa", "s"=>"Sophie", "t"=>"Theodor", "u"=>"Ulrich", "v"=>"Viktor", "w"=>"Wilhelm", "x"=>"Xaver",     "y"=>"Yverdon", "z"=>"Zürich",    "ä"=>"Äsch",  "ö"=>"Örlikon", "ü"=>"Übermut", "ß"=>"Eszett" }
+    DK    = {"a"=>"Anna", "å"=>"Åse", "æ"=>"Ægir", "b"=>"Bernhard", "c"=>"Cecilie", "d"=>"David", "e"=>"Erik", "f"=>"Frederik", "g"=>"Georg", "h"=>"Hans", "i"=>"Ida", "j"=>"Johan", "k"=>"Karen", "l"=>"Ludvig", "m"=>"Mari", "n"=>"Nikolaj", "o"=>"Odin", "ø"=>"Øresund", "p"=>"Peter", "q"=>"Quintus", "r"=>"Rasmus", "s"=>"Søren", "t"=>"Theodor", "u"=>"Ulla", "v"=>"Viggo", "w"=>"William", "x"=>"Xerxes", "y"=>"Yrsa", "z"=>"Zackarias"}
+    EL    = {"α"=>"αστήρ", "β"=>"Βύρων", "γ"=>"γαλή", "δ"=>"δόξα", "ε"=>"Ερμής", "ζ"=>"Ζεύς", "η"=>"Ηρώ", "θ"=>"θεά", "ι"=>"ίσκιος", "κ"=>"κενόν", "λ"=>"λάμα", "μ"=>"μέλι", "ν"=>"ναός", "ξ"=>"Ξέρξης", "ο"=>"οσμή", "π"=>"Πέτρος", "ρ"=>"ρήγας", "σ"=>"σοφός", "τ"=>"τίγρης", "υ"=>"ύμνος", "φ"=>"Φωφώ", "χ"=>"χαρά", "ψ"=>"ψυχή", "ω"=>"ωμέγα"}
+    ES    = {"a"=>"Antonio", "b"=>"Burgos", "c"=>"Carmen", "d"=>"Dolores", "e"=>"Enrique", "f"=>"Francia", "g"=>"Granada", "h"=>"Historia", "i"=>"Inés", "j"=>"José", "k"=>"Kilo", "l"=>"Lorenzo", "m"=>"Madrid", "n"=>"Navarra", "ñ"=>"Ñoño", "o"=>"Oviedo", "p"=>"París", "q"=>"Querido", "r"=>"Ramón", "s"=>"Sábado", "t"=>"Toledo", "u"=>"Ulises", "v"=>"Valencia", "w"=>"Washington", "x"=>"Xilófono", "y"=>"Yegua", "z"=>"Zaragoza"}
+    FI    = {"a"=>"Aarne", "ä"=>"Äiti", "å"=>"Åke", "b"=>"Bertta", "c"=>"Celsius", "d"=>"Daavid", "e"=>"Eemeli", "f"=>"Faarao", "g"=>"Gideon", "h"=>"Heikki", "i"=>"Iivari", "j"=>"Jussi", "k"=>"Kalle", "l"=>"Lauri", "m"=>"Matti", "n"=>"Niilo", "o"=>"Otto", "ö"=>"Öljy", "p"=>"Paavo", "r"=>"Risto", "s"=>"Sakari", "t"=>"Tyyne", "u"=>"Urho", "v"=>"Vihtori", "w"=>"Wiski", "x"=>"Äksä", "y"=>"Yrjö", "z"=>"Tseta"}
+    FR    = {"a"=>"Anatole", "b"=>"Berthe", "c"=>"Célestin", "d"=>"Désiré", "e"=>"Eugène", "f"=>"François", "g"=>"Gaston", "h"=>"Henri", "i"=>"Irma", "j"=>"Joseph", "k"=>"Kléber", "l"=>"Louis", "m"=>"Marcel", "n"=>"Nicolas", "o"=>"Oscar", "p"=>"Pierre", "q"=>"Quintal", "r"=>"Raoul", "s"=>"Suzanne", "t"=>"Thérèse", "u"=>"Ursule", "v"=>"Victor", "w"=>"William", "x"=>"Xavier", "y"=>"Yvonne", "z"=>"Zoé"}
+    IT    = {"a"=>"Ancona", "b"=>"Bologna", "c"=>"Como", "d"=>"Domodossola", "e"=>"Empoli", "f"=>"Firenze", "g"=>"Genova", "h"=>"Hotel", "i"=>"Imola", "j"=>"Jolly", "k"=>"Kappa", "l"=>"Livorno", "m"=>"Milano", "n"=>"Napoli", "o"=>"Otranto", "p"=>"Padova", "q"=>"Quadro", "r"=>"Roma", "s"=>"Savona", "t"=>"Torino", "u"=>"Udine", "v"=>"Venezia", "w"=>"Washington", "x"=>"Xeres", "y"=>"York", "z"=>"Zara"}
+    NL    = {"a"=>"Anna", "b"=>"Bernard", "c"=>"Cornelis", "d"=>"Dirk", "e"=>"Eduard", "f"=>"Ferdinand", "g"=>"Gerard", "h"=>"Hendrik", "i"=>"Izaak", "j"=>"Julius", "k"=>"Karel", "l"=>"Lodewijk", "m"=>"Maria", "n"=>"Nico", "o"=>"Otto", "p"=>"Pieter", "q"=>"Quotiënt", "r"=>"Richard", "s"=>"Simon", "t"=>"Theodor", "u"=>"Utrecht", "v"=>"Victor", "w"=>"Willem", "x"=>"Xanthippe", "y"=>"Ypsilon", "z"=>"Zaandam"}
+    NO    = {"a"=>"Anna", "å"=>"Åse", "æ"=>"Ærlig", "b"=>"Bernhard", "c"=>"Caesar", "d"=>"David", "e"=>"Edith", "f"=>"Fredrik", "g"=>"Gustav", "h"=>"Harald", "i"=>"Ivar", "j"=>"Johan", "k"=>"Karin", "l"=>"Ludvig", "m"=>"Martin", "n"=>"Nils", "o"=>"Olivia", "ø"=>"Østen", "p"=>"Petter", "q"=>"Quintus", "r"=>"Rikard", "s"=>"Sigrid", "t"=>"Teodor", "u"=>"Ulrik", "v" => "Enkelt-V", "w"=> "Dobbelt-W", "x"=>"Xerxes", "y"=>"Yngling", "z"=>"Zakarias"}
+    PT_PT = {"a"=>"Aveiro", "b"=>"Braga", "c"=>"Coimbra", "d"=>"Dafundo", "é"=>"Évora", "f"=>"Faro", "g"=>"Guarda", "h"=>"Horta", "i"=>"Itália", "j"=>"José", "k"=>"Kodak", "l"=>"Lisboa", "m"=>"Maria", "n"=>"Nazaré", "o"=>"Ovar", "p"=>"Porto", "q"=>"Queluz", "r"=>"Rossio", "s"=>"Setúbal", "t"=>"Tavira", "u"=>"Unidade", "v"=>"Vidago", "w"=>"Waldemar", "x"=>"Xavier", "y"=>"York", "z"=>"Zulmira"}
+    PT_BR = {"a"=>"Amor", "b"=>"Bandeira", "c"=>"Cobra", "d"=>"Dado", "e"=>"Estrela", "f"=>"Feira", "g"=>"Goiaba", "h"=>"Hotel", "í"=>"Índio", "j"=>"José", "k"=>"Kiwi", "l"=>"Lua", "m"=>"Maria", "n"=>"Navio", "o"=>"Ouro", "p"=>"Pipa", "q"=>"Quilombo", "r"=>"Raiz", "s"=>"Saci", "t"=>"Tatu", "u"=>"Uva", "v"=>"Vitória", "w"=>"Wilson", "x"=>"Xadrez", "y"=>"Yolanda", "z"=>"Zebra"}
+    RO    = {"a"=>"Ana", "b"=>"Barbu", "c"=>"Costică", "d"=>"Dumitru", "e"=>"Elena", "f"=>"Florică", "g"=>"Gheorghe", "h"=>"Horia", "i"=>"Ilie", "j"=>"Jean", "k"=>"Kappa", "l"=>"Lazăr", "m"=>"Maria", "n"=>"Nicolae", "o"=>"Olga", "p"=>"Petrică", "q"=>"???", "r"=>"Radu", "s"=>"Sandu", "t"=>"Tudor", "u"=>"Udrea", "v"=>"Vasile", "w"=>"Walter", "x"=>"Xenia", "y"=>"i-grec", "z"=>"Zoe"}
+    RU    = {"а"=>"А́нна", "б"=>"Бори́с", "в"=>"Васи́лий", "г"=>"Григо́рий", "д"=>"Дми́трий", "е"=>"Еле́на", "ё"=>"Еле́на", "ж"=>"Же́ня", "з"=>"Зинаи́да", "и"=>"Ива́н", "й"=>"Ива́н кра́ткий", "к"=>"Константи́н", "л"=>"Леони́д", "м"=>"Михаи́л", "н"=>"Никола́й", "о"=>"О́льга", "п"=>"Па́вел", "р"=>"Рома́н", "с"=>"Семён", "т"=>"Татья́на", "у"=>"Улья́на", "ф"=>"Фёдор", "х"=>"Харито́н", "ц"=>"ца́пля", "ч"=>"челове́к", "ш"=>"Шу́ра", "щ"=>"щу́ка", "ъ"=>"твёрдый знак", "ы"=>"е́ры", "ь"=>"мя́гкий знак", "э"=>"э́хо", "ю"=>"Ю́рий", "я"=>"Я́ков"}
+    SE    = {"a"=>"Adam", "ä"=>"Ärlig", "å"=>"Åke", "b"=>"Bertil", "c"=>"Caesar", "d"=>"David", "e"=>"Erik", "f"=>"Filip", "g"=>"Gustav", "h"=>"Helge", "i"=>"Ivar", "j"=>"Johan", "k"=>"Kalle", "l"=>"Ludvig", "m"=>"Martin", "n"=>"Niklas", "o"=>"Olof", "ö"=>"Östen", "p"=>"Petter", "q"=>"Quintus", "r"=>"Rudolf", "s"=>"Sigurd", "t"=>"Tore", "u"=>"Urban", "ü"=>"Übel", "v"=>"Viktor", "w"=>"Wilhelm", "x"=>"Xerxes", "y"=>"Yngve", "z"=>"Zäta"}
+    SL    = {"a"=>"Ankaran", "b"=>"Bled", "c"=>"Celje", "č"=>"Čatež", "d"=>"Drava", "e"=>"Evropa", "f"=>"Fala", "g"=>"Gorica", "h"=>"Hrastnik", "i"=>"Izola", "j"=>"Jadran", "k"=>"Kamnik", "l"=>"Ljubljana", "m"=>"Maribor", "n"=>"Nanos", "o"=>"Ormož", "p"=>"Piran", "q"=>"Queen", "r"=>"Ravne", "s"=>"Soča", "š"=>"Šmarje", "t"=>"Triglav", "u"=>"Unec", "v"=>"Velenje", "w"=>"Dvojni v", "x"=>"Iks", "y"=>"Ipsilon", "z"=>"Zalog", "ž"=>"Žalec"}
+    TR    = {"a"=>"Adana", "b"=>"Bolu", "c"=>"Ceyhan", "ç"=>"Çanakkale", "d"=>"Denizli", "e"=>"Edirne", "f"=>"Fatsa", "g"=>"Giresun", "ğ"=>"Yumuşak G", "h"=>"Hatay", "i"=>"Isparta", "i̇"=>"İzmir", "j"=>"Jandarma", "k"=>"Kars", "l"=>"Lüleburgaz", "m"=>"Muş", "n"=>"Niğde", "o"=>"Ordu", "ö"=>"Ödemiş", "p"=>"Polatlı", "r"=>"Rize", "s"=>"Sinop", "ş"=>"Şırnak", "t"=>"Tokat", "u"=>"Uşak", "ü"=>"Ünye", "v"=>"Van", "y"=>"Yozgat", "z"=>"Zonguldak"}
+  end
+
+  class Speller
+    def initialize(alphabet=Alphabet::NATO)
+      @alphabet = alphabet
+    end
+
+    def spell(message)
+      @alphabet.values_at(*message.downcase.chars).compact
+    end
+  end
+  
+  class Speaker
+    def initialize(voice)
+      @voice = voice
+    end
+    
+    def say(message)
+      %x(say "#{message}" -v #{@voice})
+    end
+  end
+end
